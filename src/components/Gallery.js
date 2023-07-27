@@ -4,7 +4,7 @@ import './Gallery.scss';
 import Modal from './Modal';
 import Card from './Card';
 
-class Gallery extends React.Component {
+class Gallery extends React.PureComponent {
 
     static propTypes = {
         clients: PropTypes.arrayOf(
@@ -27,13 +27,18 @@ class Gallery extends React.Component {
     }
 
     setModalActive = (modalActive, selectedItem = null) => {
+        if (modalActive) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "visible";
+        }
+
         this.setState({ modalActive, selectedItem });
     }
 
     selectCard = (currentItem) => {
         this.setModalActive(true, currentItem);
     }
-
 
     render() {
         return (
@@ -46,6 +51,7 @@ class Gallery extends React.Component {
                     }
                 </div>
                 {this.state.selectedItem && <Modal active={this.state.modalActive} setActive={this.setModalActive} item={this.state.selectedItem} />}
+                <div></div>
             </>
         );
     }

@@ -24,7 +24,6 @@ class Card extends React.PureComponent {
     }
 
     render() {
-
         return <div className='Card' key={this.state.item.id} onClick={this.openCardOnClick}>
             <img src={this.state.item.image} alt={this.state.item.name}></img>
             <div className='CardName'>{this.state.item.name}</div>
