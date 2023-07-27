@@ -1,0 +1,40 @@
+.Modal {
+    height: 100vh;
+    width: 100%;
+    background-color: rgb(40, 39, 39);
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: scale(0);
+    font-weight: 400;
+    font-size: 20px;
+    display: flex;
+
+    .Modal__content {
+        margin: auto;
+        padding: 30px;
+        border-radius: 20px;
+        background-color: #fff;
+        height: 90vh;
+        max-height: 600px;
+        width: 90%;
+/*         justify-content: center;
+        align-items: center; */
+
+        .Modal__description{
+            padding-left: 55%;
+            display: grid;
+            grid-template-columns: 50% 50%;
+
+            div>span{
+               font-weight: 700; 
+               display: block;
+               line-height: 45px;
+            }
+        }
+   }
+}
+
+.active {
+    transform: scale(1);
+}
