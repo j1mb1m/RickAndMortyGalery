@@ -1,0 +1,10 @@
+.ScrollToTop {
+    position: fixed;
+    bottom: 5vh;
+    right: 3vw;
+    visibility: hidden;
+}
+
+.scroll-active {
+    visibility: visible;
+}

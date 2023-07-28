@@ -4,6 +4,7 @@ import './Gallery.scss';
 import Modal from './modal';
 import Card from './Card';
 import Loader from './loader'
+import ScrollToTop from './ScrollToTop';
 
 class Gallery extends React.PureComponent {
 
@@ -31,7 +32,10 @@ class Gallery extends React.PureComponent {
         modalActive: false,
         selectedItem: null,
         items: this.props.items,
+        showScroll: false,
     }
+
+
 
     setModalActive = (modalActive, selectedItem = null) => {
         if (modalActive) {
@@ -47,6 +51,21 @@ class Gallery extends React.PureComponent {
         this.setModalActive(true, currentItem);
     }
 
+    scrollToTopHundler = (e) => {
+        if (Math.floor(e.target.documentElement.scrollTop) > 10) {
+            this.setState({ showScroll: true })
+        }
+        else this.setState({ showScroll: false });
+    }
+
+    componentDidMount = () => {
+        document.addEventListener('scroll', this.scrollToTopHundler);
+    };
+
+    componentWillUnmount = () => {
+        document.removeEventListener('scroll', this.scrollToTopHundler);
+    };
+
     render() {
         return (
             <>
@@ -61,6 +80,7 @@ class Gallery extends React.PureComponent {
                     this.state.selectedItem && <Modal active={this.state.modalActive} setActive={this.setModalActive} item={this.state.selectedItem} />
                 }
                 <Loader showComponent={this.props.pages.currentPage < this.props.pages.totalPages}></Loader>
+                <ScrollToTop showComponent={!this.state.selectedItem && this.state.showScroll} />
             </>
         );
     }

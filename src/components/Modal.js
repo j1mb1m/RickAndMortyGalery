@@ -1,5 +1,5 @@
 import React from "react";
-import './Modal.scss';
+import './modal.scss';
 
 const Modal = ({ active, setActive, item }) => {
     return <div className={active ? "Modal active" : "Modal"} onClick={() => setActive(false)}>
