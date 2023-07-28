@@ -6,46 +6,55 @@ import Gallery from './components/Gallery';
 
 function App() {
 
-  const [characters, setCharacters] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [items, setItems] = useState({ currentPage: 1, totalPages: 1, data: [] });
   const [fetching, setFetching] = useState(true);
-  const [totalPages, setTotalPages] = useState(1);
+  const [scrolling, setScrolling] = useState(false);
 
   useEffect(() => {
+
     function fetchData() {
-      const url = 'https://rickandmortyapi.com/api/character' + (currentPage > 0 ? '/?page=' + currentPage : '');
+      const url = 'https://rickandmortyapi.com/api/character' + (items.currentPage > 0 ? '/?page=' + items.currentPage : '');
 
       fetch(url)
         .then(response => response.json())
-        .then(data => {
-          setCharacters(prev => [...prev, ...data.results]);
-          setCurrentPage(prev => prev + 1);
-          setTotalPages(data.info.pages);
-
+        .then(incomingData => {
+          setItems({ currentPage: items.currentPage + 1, totalPages: incomingData.info.pages, data: [...items.data, ...incomingData.results] });
         })
-        .finally(() => setFetching(false));
+        .finally(() => {
+          setFetching(false);
+          if (!scrolling && document.body.scrollHeight > 100) {
+            setScrolling(true);
+          }
+        }
+        );
     }
-    if (fetching) {
-      fetchData();
+
+    if (fetching || (!scrolling && items.currentPage <= items.totalPages)) {
+      setTimeout(fetchData, 0);
     }
-  }, [fetching, currentPage]);
+
+  }, [fetching, items, scrolling]);
+
 
   useEffect(() => {
     document.addEventListener('scroll', scrollHandler);
     return function () {
       document.removeEventListener('scroll', scrollHandler);
     }
-  }, );
+  },);
 
   const scrollHandler = (e) => {
-    if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100 && currentPage <= totalPages) {
+    if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100 && items.currentPage <= items.totalPages) {
       setFetching(true);
     }
   }
 
   return (
     <div className="App">
-      <Gallery characters={characters} />
+      <Gallery items={items.data} pages={{
+        currentPage: items.currentPage,
+        totalPages: items.totalPages
+      }} />
     </div >
   );
 }
