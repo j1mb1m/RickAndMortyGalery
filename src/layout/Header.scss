@@ -5,7 +5,7 @@ header {
     background-color: rgb(76, 75, 75);
     display: flex;
     justify-content: flex-end;
-    max-width: 1200px;
+    max-width: var(--max-width);
     width: 100%;
 
     margin: auto;
