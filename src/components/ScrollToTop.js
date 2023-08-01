@@ -7,13 +7,19 @@ function ScrollToTop(props) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    return <div className={`ScrollToTop ${props.showComponent ? 'scroll-active' : null}`}
+    return <div className={`ScrollToTop ${props.showComponent ? 'active' : ''}`}
         onClick={scrollOnClick}>
-        <svg width="60px" height="60px" viewBox="-0.8 -0.8 17.60 17.60" xmlns="http://www.w3.org/2000/svg" fill="#000000" stroke="#000000" strokeWidth="0.00016"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-            <g id="SVGRepo_iconCarrier"> <path fill="#000000" fillRule="evenodd" d="M8,5.58578 L11.7071,9.29289 C12.0976,9.68342 12.0976,10.3166 11.7071,10.7071 C11.3466385,11.0675615 10.7793793,11.0952893 10.3871027,10.7902834 L10.2929,10.7071 L9,9.41421 L9,15 C9,15.5523 8.55229,16 8,16 C7.48716857,16 7.06449347,15.613973 7.0067278,15.1166239 L7,15 L7,9.41421 L5.70711,10.7071 C5.31658,11.0976 4.68342,11.0976 4.29289,10.7071 C3.93241,10.3466385 3.90468077,9.77939633 4.20970231,9.3870988 L4.29289,9.29289 L8,5.58578 Z M8,0 C9.10457,0 10,0.895431 10,2 C10,3.10457 9.10457,4 8,4 C6.89543,4 6,3.10457 6,2 C6,0.895431 6.89543,0 8,0 Z"></path> </g>
+        <svg width="55" height="55" xmlns="http://www.w3.org/2000/svg">
+            <g>
+                <title>Layer 1</title>
+                <ellipse stroke="#000" ry="25" rx="25.04546" id="svg_1" cy="26.40674" cx="26.22725" strokeWidth="2.5" fill="transparent" />
+                <line strokeLinecap="null" strokeLinejoin="null" id="svg_3" y2="13.45312" x2="28.18182" y1="24.45312" x1="16.18182" fillOpacity="null" strokeOpacity="null" strokeWidth="3.5" stroke="#000" fill="none" />
+                <line strokeLinecap="null" strokeLinejoin="null" id="svg_4" y2="26.45312" x2="28.18182" y1="37.45312" x1="16.18182" fillOpacity="null" strokeOpacity="null" strokeWidth="3.5" stroke="#000" fill="none" />
+                <line transform="rotate(89 31.86143684387207,18.953125) " strokeLinecap="null" strokeLinejoin="null" id="svg_8" y2="13.45312" x2="37.86144" y1="24.45312" x1="25.86144" fillOpacity="null" strokeOpacity="null" strokeWidth="3.5" stroke="#000" fill="none" />
+                <line transform="rotate(90 31.683355331420902,31.81893539428711) " strokeLinecap="null" strokeLinejoin="null" id="svg_9" y2="26.31893" x2="37.68336" y1="37.31893" x1="25.68336" fillOpacity="null" strokeOpacity="null" strokeWidth="3.5" stroke="#000" fill="none" />
+                <path id="svg_10" d="m-180.9016,-9.69646l0.74251,-0.74001l0.74251,0.74001l-0.37125,0l0,0.74357l-0.74251,0l0,-0.74357l-0.37125,0z" fillOpacity="null" strokeOpacity="null" strokeWidth="3.5" stroke="#000" fill="none" />
+            </g>
         </svg>
-
-
 
     </div>
 }

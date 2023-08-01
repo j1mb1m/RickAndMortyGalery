@@ -1,5 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import './Card.scss';
 
 
 class Card extends React.PureComponent {

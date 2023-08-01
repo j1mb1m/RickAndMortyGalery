@@ -1,8 +1,44 @@
-.App{
+.App {
     display: flex;
     flex-flow: column;
     min-height: 100vh;
     height: fit-content;
 
-    background-color: lightgrey;
+    max-width: 1200px;
+    width: 100%;
+
+    margin: auto;
+
+    .ItemGallery {
+        width: 100%;
+    /*     height: 100%; */
+        margin: 0 auto;
+    
+        display: flex;
+        flex-wrap: wrap;
+    
+    }
+    
+    
+}
+
+
+@media (max-width: 1300px) {
+    .App {
+        max-width: 920px;
+    }
+
+}
+
+@media (max-width: 950px) {
+    .App {
+        max-width: 620px;
+    }
+
+}
+@media (max-width: 650px) {
+    .App {
+        max-width: 320px;
+    }
+
 }

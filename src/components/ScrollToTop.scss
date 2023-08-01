@@ -1,10 +1,11 @@
 .ScrollToTop {
     position: fixed;
     bottom: 5vh;
-    right: 3vw;
-    visibility: hidden;
+    right: -55px;
+    transition: right 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.scroll-active {
-    visibility: visible;
+.ScrollToTop.active {
+    right: 1vw;
 }
+
