@@ -25,24 +25,26 @@ function App({ setErrorApi }) {
   const getResource = async (url) => {
     const res = await getApiResource(url);
 
-    if (res) {
-      const charactersList = res.results.map(({ id, name, image, status, species, gender, origin, location }) => {
-        return { id, name, image, status, species, gender, origin: origin.name, location: location.name };
-      })
+/*     setTimeout(() => { */
+      if (res) {
+        const charactersList = res.results.map(({ id, name, image, status, species, gender, origin, location }) => {
+          return { id, name, image, status, species, gender, origin: origin.name, location: location.name };
+        })
 
-      if (togglePagination)
-        setCharacters(charactersList);
+        if (togglePagination)
+          setCharacters(charactersList);
+        else
+          setCharacters(prev => [...prev, ...charactersList]);
+
+        totalPages.current = res.info.pages;
+        setCurrentPage(prevPage => prevPage + 1);
+        setErrorApi(false);
+      }
       else
-        setCharacters(prev => [...prev, ...charactersList]);
+        setErrorApi(true);
 
-      totalPages.current = res.info.pages;
-      setCurrentPage(prevPage => prevPage + 1);
-      setErrorApi(false);
-    }
-    else
-      setErrorApi(true);
-
-    setIsLoading(false);
+      setIsLoading(false);
+/*     }, 1000); */ //тест отображения статуса загрузки
   }
 
   const scrollHandler = (e) => {
@@ -56,7 +58,7 @@ function App({ setErrorApi }) {
     if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight || isLoading) {
       return;
     }
-    /*     getResource(API_CHARACTER_WITHPAGE + currentPage); */
+
     setIsLoading(true);
   }
 
@@ -125,7 +127,7 @@ function App({ setErrorApi }) {
           selectedItem && <Modal active={modalActive} setActive={modalFormClicked} item={selectedItem} />
         }
         {<ScrollToTop showComponent={!selectedItem && scrollToUp} />}
-        {isLoading && (<Loader showComponent={true}></Loader>)}
+        {isLoading && (<Loader visible={isLoading}></Loader>)}
       </div >
     </>
 

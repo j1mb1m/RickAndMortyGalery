@@ -1,4 +1,5 @@
-import { RotatingLines } from 'react-loader-spinner'
+import { RotatingLines } from 'react-loader-spinner';
+import PropTypes from 'prop-types';
 import './loader.scss';
 
 const Loader = (props) => {
@@ -10,9 +11,14 @@ const Loader = (props) => {
                 strokeWidth="5"
                 animationDuration="1"
                 width="50"
-                visible={props.showComponent}
+                visible={props.visible}
             />
         </div>
     );
 }
+
+Loader.propTypes = {
+    visible: PropTypes.bool.isRequired,
+}
 export default Loader;
+
